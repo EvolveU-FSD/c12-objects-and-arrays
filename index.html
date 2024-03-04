@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Objects and Arrays</title>
+</head>
+<body>
+    <div class="people-list">
+        <div class="title">People</div>
+        <div id="peopleList"></div>
+        <button onclick="showAddPersonForm()">ADD PERSON</button>
+    </div>
+    <div id="editForm" class="edit-form">
+        <div class="title">Edit Person</div>
+        <label>Name</label>
+        <input id="editFirstName" placeholder="First Name">
+        <input id="editMiddleName" placeholder="Middle Name">
+        <input id="editLastName" placeholder="Last Name">
+        <label>Birthday</label>
+        <input id="editBirthday" type="date" placeholder="Birthday">
+        <button onclick="saveUpdate()">SAVE UPDATE</button>
+        <button class="secondary" onclick="cancelUpdate()">Cancel</button>
+    </div>
+    <div id="newPersonForm" class="edit-form">
+        <div class="title">New Person</div>
+        <label>Name</label>
+        <input id="newFirstName" placeholder="First Name">
+        <input id="newMiddleName" placeholder="Middle Name">
+        <input id="newLastName" placeholder="Last Name">
+        <label>Birthday</label>
+        <input id="newBirthday" type="date" placeholder="Birthday">
+        <button onclick="createNewPerson()">CREATE PERSON</button>
+        <button class="secondary" onclick="cancelNewPerson()">Cancel</button>
+    </div>
+    <script src="index.js"></script>    
+</body>
+</html>
