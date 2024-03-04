@@ -32,9 +32,12 @@ When a person is selected for editing, the script keeps track of the person bein
 ## Medium People List
 1. change the synchronizePeopleList to use Array.forEach()
 
-## Spicy Cancel Option
+## Spicy - Cancel Option
 1. only ask for confirmation to cancel on update when the fields have actually changed value from their original values
 
-## Spicy People List
+## Spicy - People List
 1. Sort the people list by name
 1. add sort buttons for first name, last name, or birthdate
+
+## Spicy - Reuse form html
+1. Right now the edit and new person forms are basically all the same html with minor differences.  Find a way to collapse the edit and new person forms into the same html.
