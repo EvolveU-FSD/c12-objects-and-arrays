@@ -1,6 +1,6 @@
 # Objects and Arrays
 
-The script in the web page manages adn array of "person" objects.  Each person has a few properties, firstName, middleName, lastName and birthday (as a string).
+The script in the web page manages an array of "person" objects.  Each person has a few properties, firstName, middleName, lastName and birthday (as a string).
 
 The page is setup with three main parts:
 1. the "people list" that shows the people that are in the list and allows you to select one for editing or kick off adding a new person
