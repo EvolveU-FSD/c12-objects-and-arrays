@@ -1,28 +1,43 @@
 let people = [
     {firstName: 'Tony', middleName: 'Oscar', lastName: 'Enerson', birthday: '1972-10-04'},
     {firstName: 'Marco', middleName: '', lastName: 'Enerson', birthday: '2013-03-21'},
+    {firstName: 'Ryan', middleName: '', lastName: 'Wells', birthday: '2000-01-01'},
 ]
 
 let personBeingEdited = null
+let personBeingEditedIndex = -1
 
 function selectPerson(index) {
-    hide('newPersonForm')
+    hideNewPersonForm()
 
     personBeingEdited = people[index]
-    // copy the object fields from people into the "edit" inputs
+    personBeingEditedIndex = index
 
-    show('editForm')
+    // copy the object fields from people into the "edit" inputs
+    document.getElementById('editFirstName').value = personBeingEdited.firstName
+    document.getElementById('editMiddleName').value = personBeingEdited.middleName
+    document.getElementById('editLastName').value = personBeingEdited.lastName
+    document.getElementById('editBirthday').value = personBeingEdited.birthday
+
+    showEditForm()
 }
 
 function saveUpdate() {
-    // copy values from inputs back into the personBeingEdited object
+    personBeingEdited.firstName = document.getElementById('editFirstName').value
+    personBeingEdited.middleName = document.getElementById('editMiddleName').value
+    personBeingEdited.lastName = document.getElementById('editLastName').value 
+    personBeingEdited.birthday = document.getElementById('editBirthday').value
 
-    // don't forget to synchronize the people list at the end
-    // hide the edit form if you want
+    // SAVE TO THE SERVER GOES RIGHT HERE
+
+    synchronizePeopleList()
+    hideEditForm()
 }
 
 function cancelUpdate() {
-    hide('editForm')
+    if (confirm('Are you sure you want to abandon your edits to ' + personBeingEdited.firstName + '?')) {
+        hideEditForm()
+    }
 }
 
 function showAddPersonForm() {
@@ -33,28 +48,69 @@ function showAddPersonForm() {
     document.getElementById('newBirthday').value=''
 
     // swap the forms around
-    hide('editForm')
-    show('newPersonForm')
+    hideEditForm()
+    showNewPersonForm()
 }
 
 function createNewPerson() {
-    // copy values from "new" inputs into an object and push it into the array
+    let newPerson = {}
+    newPerson.firstName = document.getElementById('newFirstName').value
+    newPerson.middleName = document.getElementById('newMiddleName').value
+    newPerson.lastName = document.getElementById('newLastName').value 
+    newPerson.birthday = document.getElementById('newBirthday').value
 
-    // don't forget to synchronize the people list at the end
-    // hide the create form if you want
+    people.push(newPerson)
+    synchronizePeopleList()
+    hideNewPersonForm()
 }
 
 function cancelNewPerson() {
-    hide('newPersonForm')
+    const newName = document.getElementById('newFirstName').value
+    if (!newName || confirm('Are you sure you want to abandon ' + newName + ' without saving?')) {
+        hideNewPersonForm()
+    }
 }
 
-function synchronizePeopleList() {
-    let peopleListHtml = ''
-    for (let index = 0; index < people.length; index++) {
-        person = people[index]
-        peopleListHtml += '<div class="person" onclick="selectPerson('+index+')">'+person.firstName+" "+person.lastName+"</div>"
+function removePerson() {
+    if (confirm("Are you sure you want to remove " + personBeingEdited.firstName )) {
+        people.splice(personBeingEditedIndex, 1)
+        hideEditForm()
+        synchronizePeopleList()
     }
-    document.getElementById("peopleList").innerHTML = peopleListHtml
+}
+
+function synchronizePeopleList() {   
+    if (people.length > 0) {
+        let peopleListHtml = ''
+        for (let index = 0; index < people.length; index++) {
+            const person = people[index]
+            peopleListHtml += '<div class="person" onclick="selectPerson('+index+')">'+person.firstName+" "+person.lastName+"</div>"
+        }
+        document.getElementById("peopleList").innerHTML = peopleListHtml
+    }
+    else {
+        document.getElementById("peopleList").innerHTML = 'No people here! Add one to get started.'
+    }
+}
+
+function showEditForm() {
+    show('editForm')
+    hide('addPersonButton')
+}
+
+function hideEditForm() {
+    hide('editForm')
+    show('addPersonButton')
+}
+
+function showNewPersonForm() {
+    show('newPersonForm')
+    hide('addPersonButton')
+}
+
+function hideNewPersonForm() {
+    hide('newPersonForm')
+    show('addPersonButton')
 }
 
 function hide(elementId) {
@@ -67,4 +123,4 @@ function show(elementId) {
 
 synchronizePeopleList()
 hide('editForm')
-hide('newPersonForm')
+hideNewPersonForm()

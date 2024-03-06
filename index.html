@@ -10,7 +10,7 @@
     <div class="people-list">
         <div class="title">People</div>
         <div id="peopleList"></div>
-        <button onclick="showAddPersonForm()">ADD PERSON</button>
+        <button id="addPersonButton" onclick="showAddPersonForm()">ADD PERSON</button>
     </div>
     <div id="editForm" class="edit-form">
         <div class="title">Edit Person</div>
@@ -21,6 +21,7 @@
         <label>Birthday</label>
         <input id="editBirthday" type="date" placeholder="Birthday">
         <button onclick="saveUpdate()">SAVE UPDATE</button>
+        <button class="danger" onclick="removePerson()">REMOVE</button>
         <button class="secondary" onclick="cancelUpdate()">Cancel</button>
     </div>
     <div id="newPersonForm" class="edit-form">

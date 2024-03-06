@@ -55,9 +55,16 @@ button {
 }
 
 .person {
+    border-radius: 0.25em;
+    padding: 0.25em;
     margin-top: 0.5em;
     font-weight: 700;
     text-decoration: underline;
+}
+
+.person:hover {
+    background-color: green;
+    color: white;
 }
 
 .people-list button:first-of-type {
@@ -77,6 +84,10 @@ button {
 
 .edit-form button:first-of-type {
     margin-top: 1em;
+}
+
+.danger {
+    background-color: lightcoral;
 }
 
 .secondary {
